@@ -1,0 +1,13 @@
+{% extends 'index.html' %} 
+{% block content %}
+    <form method="POST" action="/productadd">
+        {% csrf_token %}
+        <table border="1">
+            <tr><td>Enter product name</td><td><input type="text" name="pdtname"></td></tr>
+            <tr><td>Enter product price</td><td><input type="number" name="pdtprice"></td></tr>
+            <tr><td colspan="2"> <button type="submit">SUBMIT</button></td> </tr>
+           
+        </table>
+    </form>
+    {% endblock content %}
+ 

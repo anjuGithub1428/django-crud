@@ -1,0 +1,12 @@
+{% extends 'index.html' %} 
+{% block content %}
+    <h3>Login page</h3>
+    <form action="/login" method="POST">
+        {% csrf_token %}
+    username: <input type="text" name="username" id="username" />
+    password: <input type="password" name="pwd" id="pwd" />
+    <button>Submit</button>
+    </form>
+
+    {% endblock content %}
+ 

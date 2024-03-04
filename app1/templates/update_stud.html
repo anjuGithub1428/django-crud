@@ -1,0 +1,36 @@
+{% extends 'index.html' %} 
+{% load static %}
+
+{% block content %}
+
+<form action="/updatestud_again" method="POST">
+    {% csrf_token %}
+   
+    <input type="hidden" name="id" value="{{ stdt.id }}" >
+<table width="100%" height="100%" cellpadding="5" border="1">
+    <tr><td>Enter Student Name</td><td>:</td><td><input type="text" name="studname" value="{{ stdt.stud_name }}"></td></tr>
+    <tr><td>Enter Mother Name</td><td>:</td><td><input type="text" name="mothername" value="{{ stdt.mothername }}"></td></tr>
+    <tr><td>Enter Father Name</td><td>:</td><td><input type="text" name="fathername" value="{{ stdt.fathername }}"></td></tr>
+    <tr><td>Enter Nationality</td><td>:</td><td><input type="text" name="nationality" value="{{ stdt.nationality }}"></td></tr>
+    <tr><td>Enter Gender</td><td>:</td><td>
+        
+        {% if stdt.gender == "M" %}
+        <select name="gender">
+            <option value="M" selected >Male</option>
+            <option value="F">Female</option></select>
+        {% else %} 
+        <select name="gender">
+            <option value="M"  >Male</option>
+            <option value="F" selected>Female</option></select>
+        {% endif %}
+    </td></tr>
+    <tr><td>Enter Address</td><td>:</td><td><textarea name="address">{{ stdt.address  }}</textarea></td></tr>
+    <tr><td>Enter Date of Birth</td><td>:</td><td><input type="date" name="dob" value="{{ stdt.dob  }}"></td></tr>
+    <tr><td>Enter Reservation </td><td>:</td><td><input type="text" name="reserv" value="{{ stdt.reserv  }}" ></td></tr>
+    <tr><td>Enter Class</td><td>:</td><td><input type="text" name="class" value="{{ stdt.classstd }}"></td></tr>
+    <tr align="center"><td colspan="3" ><button type="submit" class="btn-warning">UPDATE</button></td>></tr>
+
+</table>
+</form>
+
+{% endblock content %}

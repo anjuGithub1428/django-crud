@@ -1,0 +1,14 @@
+{% extends 'index.html' %} 
+
+{% load static %}
+
+
+
+ 
+{% block content %}
+    <h1>This is my home page</h1>
+    {% for row_pdt in pdts %}
+    <h2> {{row_pdt.product_name}}</h2>
+    {% endfor %}
+{% endblock content %}
+ 

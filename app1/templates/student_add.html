@@ -1,0 +1,26 @@
+{% extends 'index.html' %} 
+{% load static %}
+
+{% block content %}
+
+<form action="/studadd" method="POST">
+    {% csrf_token %}
+   
+    
+<table width="100%" height="100%" cellpadding="5" border="1">
+    <tr><td>Enter Student Name</td><td>:</td><td><input type="text" name="studname"></td></tr>
+    <tr><td>Enter Mother Name</td><td>:</td><td><input type="text" name="mothername"></td></tr>
+    <tr><td>Enter Father Name</td><td>:</td><td><input type="text" name="fathername"></td></tr>
+    <tr><td>Enter Nationality</td><td>:</td><td><input type="text" name="nationality"></td></tr>
+    <tr><td>Enter Gender</td><td>:</td><td>
+        <select name="gender"><option value="M">Male</option><option value="F">Female</option></select></td></tr>
+    <tr><td>Enter Address</td><td>:</td><td><textarea name="address"></textarea></td></tr>
+    <tr><td>Enter Date of Birth</td><td>:</td><td><input type="date" name="dob"></td></tr>
+    <tr><td>Enter Reservation </td><td>:</td><td><input type="text" name="reserv"></td></tr>
+    <tr><td>Enter Class</td><td>:</td><td><input type="text" name="class"></td></tr>
+    <tr align="center"><td colspan="3" ><button type="submit" class="btn-primary">SUBMIT</button></td>></tr>
+
+</table>
+</form>
+
+{% endblock content %}

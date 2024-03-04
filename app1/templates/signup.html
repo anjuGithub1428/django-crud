@@ -1,0 +1,35 @@
+{% extends 'index.html' %} 
+
+{% block content %}
+    <h3>Sign Up</h3>
+    <form action="/signup" method="POST">
+        {% csrf_token %}
+    <table border="1">
+        <tr><td>Enter Name</td>
+            <td>:</td>
+            <td><input type="text" name="name" id="name" /></td>
+        </tr>
+
+        <tr><td>Enter Mobile</td>
+            <td>:</td>
+            <td><input type="number" name="mob" id="mob" /></td>
+        </tr>
+
+        <tr><td>Enter email</td>
+            <td>:</td>
+            <td><input type="text" name="email" id="email" /></td>
+        </tr>
+
+        <tr><td>Enter Address</td>
+            <td>:</td>
+            <td><textarea id="address" name="address"></textarea></td>
+        </tr>
+
+      
+
+        <tr align="center"><td colspan="3"><button type="submit">Submit</button></td></tr>
+    </table>
+    </form>
+    {% endblock content %}
+    
+    
