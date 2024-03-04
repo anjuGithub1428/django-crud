@@ -3,6 +3,7 @@
 
 {% block content %}
 
+
 <table width="100%" cellpadding="2" cellspacing="0">
     <tr>
         <th>Sl.No</th>
@@ -25,7 +26,7 @@
         <td>{{ row_s.mothername }}</td>
         <td>{{ row_s.fathername }}</td>
         <td>{{ row_s.nationality }}</td>
-        <td> 
+        <td>
             {% if row_s.gender == 'M' %} Male {% else %} female {% endif %}
         </td>
         <td>{{ row_s.address }}</td>
@@ -34,10 +35,50 @@
         <td>{{ row_s.classstd }}</td>
         <td><a href="/updatestud/{{ row_s.id }}" class="primary">UPDATE</a>
         </td>
-        <td><button class="danger">DELETE</button></td>
+        <td>
+            
+                <button onclick="demoFunction('{{row_s.id}}')" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Delete
+                </button>
+
+
+        </td>
     </tr>
     {% endfor %}
 
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">warning</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" >
+                    Do you want to delete ?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <a id="bbbb"  class="danger">Delete</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
 </table>
+
+<script>
+
+    function demoFunction(a){
+        
+       var linkk= document.getElementById('bbbb');
+       linkk.setAttribute("href","/deletestud/"+a);
+    }
+</script>
+
+
+
+
 
 {% endblock content %}

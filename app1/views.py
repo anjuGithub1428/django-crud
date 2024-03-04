@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from .models import *
 
 
@@ -105,6 +105,14 @@ def updstdagain_fn(request):
 
      stdt=Students.objects.all()
      return render(request,'student_view.html',{"stdt":stdt})
+
+
+def delstd_fn(request,id):
+
+    stdt=Students.objects.get(id=id)
+    stdt.delete()
+    return redirect("/updatestud_again")
+
 
  
 

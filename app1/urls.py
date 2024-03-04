@@ -27,4 +27,5 @@ urlpatterns = [
    path('studview',views.studview_fn,name='Add student page'),
    path('updatestud/<int:id>',views.updstd_fn,name='Update student page'),
    path('updatestud_again',views.updstdagain_fn,name='Update Student page'),
+   path('deletestud/<int:id>',views.delstd_fn,name='Delete Student page'),
 ]
