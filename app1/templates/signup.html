@@ -25,6 +25,32 @@
             <td><textarea id="address" name="address"></textarea></td>
         </tr>
 
+        <tr><td>Enter DOB</td>
+            <td>:</td>
+            <td><input type="date" name="dob" ></td>
+        </tr>
+
+        <tr><td>Enter joining date</td>
+            <td>:</td>
+            <td><input type="date" name="jod" value="2024-01-01" ></td>
+        </tr>
+
+        <tr><td>Select Department Address</td>
+            <td>:</td>
+            <td>
+            <select name="dept_id">
+            <option value="0">--Select--</option>
+            {% for dept_row in dept %}
+            <option value="{{ dept_row.id }}"> {{ dept_row.dept_name }} </option>
+            {% endfor %}
+            </select></td>
+        </tr>
+
+        <tr><td>Enter password</td>
+            <td>:</td>
+            <td><input type="password" name="pwd"   ></td>
+        </tr>
+
       
 
         <tr align="center"><td colspan="3"><button type="submit">Submit</button></td></tr>

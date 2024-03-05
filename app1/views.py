@@ -1,5 +1,6 @@
 from django.shortcuts import render,redirect
 from .models import *
+from django.contrib.auth.models import User
 
 
 # Create your views here.
@@ -25,13 +26,26 @@ def login_fn( request):
     return render(request,'login.html')
 
 def sign_fn( request):
+
     if request.method=='POST':
         name=request.POST.get('name')
         mob=request.POST.get('mob')
         email=request.POST.get('email')
-        address=request.POST.get('address')        
-        return render(request,'homepage.html',
-        {'name':name,'mob':mob,'email':email,'address':address})
+        address=request.POST.get('address') 
+        dob=request.POST.get('dob')   
+        jod=request.POST.get('jod')
+        dept_id=request.POST.get('dept_id')  
+        pwd=request.POST.get('pwd')
+
+        depts=Department.objects.get(id=dept_id) #pass the instance to model teacher in order to fetch
+        
+        usr=User.objects.create_user(username=name,password=pwd)   
+        usr.save() 
+        tcr= Teacher(teach_name=name,teach_mob=mob,teach_email=email,teach_dob=dob,teach_joingdate=jod,teach_address=address,teach_dept=depts,connection=usr)   
+        tcr.save()  
+
+    dept=Department.objects.all()
+    return render(request,'signup.html',{"dept":dept})
 
     return render(request,'signup.html')
 
@@ -68,8 +82,14 @@ def studadd_fn(request):
 
 def studview_fn(request):
 
-     stdt=Students.objects.all()
-     return render(request,'student_view.html',{"stdt":stdt})
+    if request.method=='POST':
+        searchh=request.POST.get('searchh')
+        filter_val=Students.objects.filter(stud_name__contains=searchh)        
+        return render(request,'student_view.html',{"stdt":filter_val})
+
+
+    stdt=Students.objects.all()
+    return render(request,'student_view.html',{"stdt":stdt})
 
 def updstd_fn(request,id):
 
