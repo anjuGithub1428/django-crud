@@ -21,17 +21,26 @@
             <span class="navbar-toggler-icon"></span>
           </button>
           <div style="padding: 10px;font-size: 20px;" class="collapse navbar-collapse" id="navbarTogglerDemo01">
-            <a class="navbar-brand" href="#">Hidden brand</a>
+          
             <ul class="navbar-nav me-auto mb-2 mb-lg-0"  >
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="/">Home</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="login">login</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link " href="signup" tabindex="-1"  >Signup</a>
-              </li>
+             
+              {% if user_obj == 'False'  %}
+                  <li class="nav-item">
+                    <a class="nav-link" href="login">login</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link " href="signup" tabindex="-1"  >Signup</a>
+                  </li>
+              {% else %}
+                  <li class="nav-item">
+                    <a class="nav-link " href="logout1" tabindex="-1"  >logout</a>
+                  </li>
+              {% endif %}
+
+              
 
               <li class="nav-item">
                 <a class="nav-link " href="productadd" tabindex="-1"  >Add product</a>
@@ -43,6 +52,7 @@
                 <a class="nav-link " href="studview" tabindex="-1"  >Student View</a>
               </li>
             </ul>
+            <span>{{ users.username }}</span>
             <form class="d-flex" method="POST" action="/searchstud">
               {% csrf_token %}
               <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="searchh">

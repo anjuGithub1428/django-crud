@@ -1,11 +1,63 @@
+<style>
+    
+    form {border: 3px solid #f1f1f1;}
+    
+    input[type=text], input[type=password] {
+      width: 100%;
+      padding: 12px 20px;
+      margin: 8px 0;
+      display: inline-block;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+    
+    .bttn1 {
+      background-color: #04AA6D;
+      color: white;
+      padding: 14px 20px;
+      margin: 8px 0;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+    }
+    
+    button:hover {
+      opacity: 0.8;
+    }
+    
+    
+    
+    .imgcontainer {
+      text-align: center;
+      margin: 24px 0 12px 0;
+    }
+    
+    img.avatar {
+      width: 10%;
+      border-radius: 50%;
+    }
+    
+    .container {
+      padding: 16px;
+    }
+ 
+    </style>
 {% extends 'index.html' %} 
 {% block content %}
     <h3>Login page</h3>
+
     <form action="/login" method="POST">
+        
+    <div class="imgcontainer">
+        <img src="https://www.w3schools.com/howto/img_avatar2.png" alt="Avatar" class="avatar">
+      </div>
+      <div class="container">
+
         {% csrf_token %}
     username: <input type="text" name="username" id="username" />
     password: <input type="password" name="pwd" id="pwd" />
-    <button>Submit</button>
+    <button class="bttn1">Submit</button>
+    </div>
     </form>
 
     {% endblock content %}

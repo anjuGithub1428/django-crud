@@ -29,4 +29,6 @@ urlpatterns = [
    path('updatestud_again',views.updstdagain_fn,name='Update Student page'),
    path('deletestud/<int:id>',views.delstd_fn,name='Delete Student page'),
    path('searchstud',views.studview_fn,name='Search'),
+   path('login',views.login_fn_tchr,name='login page'),
+   path('logout1',views.logout1,name='logout page'),
 ]

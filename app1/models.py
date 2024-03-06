@@ -9,7 +9,7 @@ class Products(models.Model):
   product_price=models.IntegerField()
 
 class Students(models.Model):
-  connection=models.OneToOneField(User,on_delete=models.CASCADE)
+  #connection=models.OneToOneField(User,on_delete=models.CASCADE)
   stud_name=models.CharField(max_length=50)
   mothername=models.CharField(max_length=50)
   fathername=models.CharField(max_length=50)

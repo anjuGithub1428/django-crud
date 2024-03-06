@@ -1,14 +1,25 @@
 from django.shortcuts import render,redirect
 from .models import *
 from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login, logout
 
 
 # Create your views here.
 
 def home_page( request):
-    products=Products.objects.all()
+    user_obj = 'False'
+    try:
+        user_id = request.user.id
+        user_obj = User.objects.get(id=user_id)
+    except:
+        pass
+        
 
-    return render(request,'homepage.html',{"pdts":products})
+    return render(request,'homepage.html',{"user_obj":user_obj})
+
+def logout1(request):    
+    logout(request)
+    return redirect("/")
 
 def login_fn( request):
     admin_username='admin'
@@ -24,6 +35,21 @@ def login_fn( request):
 
 
     return render(request,'login.html')
+
+def login_fn_tchr( request):
+   
+    if request.method=='POST':
+        username=request.POST.get('username')
+        pwd=request.POST.get('pwd')
+        authuser = authenticate(username=name,password=pwd)
+        if authuser is not None:
+           return render(request,'student_add.html')  
+        else:
+           return render(request,'fail.html') 
+ 
+
+
+    
 
 def sign_fn( request):
 
@@ -44,10 +70,14 @@ def sign_fn( request):
         tcr= Teacher(teach_name=name,teach_mob=mob,teach_email=email,teach_dob=dob,teach_joingdate=jod,teach_address=address,teach_dept=depts,connection=usr)   
         tcr.save()  
 
+        authuser = authenticate(username=name,password=pwd) #authenticate the user
+        login(request,authuser) # automatically login
+       
+
     dept=Department.objects.all()
     return render(request,'signup.html',{"dept":dept})
 
-    return render(request,'signup.html')
+   
 
 def pdtadd_fn(request):
     if request.method=='POST':
@@ -88,8 +118,12 @@ def studview_fn(request):
         return render(request,'student_view.html',{"stdt":filter_val})
 
 
-    stdt=Students.objects.all()
-    return render(request,'student_view.html',{"stdt":stdt})
+     #gets the user details
+    user_id = request.user.id
+    user_obj = User.objects.get(id=user_id)   
+    stdt=Students.objects.all()    
+    return render(request,'student_view.html',{"stdt":stdt,"users":user_obj})
+
 
 def updstd_fn(request,id):
 
